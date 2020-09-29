@@ -1,11 +1,18 @@
 from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import Filters
 
+from globals import owner
+
 
 def setup_handlers(bot):
     @bot.handle.message(Filters.text & (~Filters.command))
     def echo(update, context):
         context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
+
+    @bot.handle.command()
+    def details(update, context):
+        """Receive some personal details about the owner"""
+        context.bot.send_message(chat_id=update.effective_chat.id, text=str(owner))
 
     @bot.handle.command()
     def caps(update, context):
