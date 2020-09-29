@@ -1,2 +1,2 @@
 # KfircoBot
-My Telegram Bot
+My First Telegram Bot, based on self-created TelegramBot framework
