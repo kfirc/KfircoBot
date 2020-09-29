@@ -1,0 +1,2 @@
+git+ssh://git@github.com/kfirc/TelegramBot.git@v0.1
+python-dotenv==0.14.0
