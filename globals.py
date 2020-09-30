@@ -9,4 +9,6 @@ owner = Owner(
     country='Israel',
     company='At-Bay',
     role='Software Engineer',
+    phone='+972-543242155',
+    website='https://www.linkedin.com/in/kfirco/',
 )
