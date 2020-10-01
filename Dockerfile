@@ -13,11 +13,12 @@ RUN mkdir /log
 # export environment variables
 ARG TELEGRAM_TOKEN
 ARG GITHUB_TOKEN
+ARG BRANCH=master
 ENV TELEGRAM_TOKEN=${TELEGRAM_TOKEN} LOGGER_PATH=/log/bot.log
 
 # Clone the GitHub Repositories
-RUN git clone https://${GITHUB_TOKEN}:x-oauth-basic@github.com/kfirc/TelegramBot.git && \
-    git clone https://${GITHUB_TOKEN}:x-oauth-basic@github.com/kfirc/KfircoBot.git
+RUN git clone -b ${BRANCH} https://${GITHUB_TOKEN}:x-oauth-basic@github.com/kfirc/TelegramBot.git && \
+    git clone -b ${BRANCH} https://${GITHUB_TOKEN}:x-oauth-basic@github.com/kfirc/KfircoBot.git
 
 # install dependencies
 RUN pip install --upgrade pip && \
