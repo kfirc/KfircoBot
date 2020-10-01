@@ -11,11 +11,13 @@ ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 RUN mkdir /log
 
 # export environment variables
-ENV LOGGER_PATH=/log/bot.log
+ARG TELEGRAM_TOKEN
+ARG GITHUB_TOKEN
+ENV TELEGRAM_TOKEN=${TELEGRAM_TOKEN} LOGGER_PATH=/log/bot.log
 
 # Clone the GitHub Repositories
-RUN git clone https://$GITHUB_TOKEN:x-oauth-basic@github.com/kfirc/TelegramBot.git && \
-    git clone https://$GITHUB_TOKEN:x-oauth-basic@github.com/kfirc/KfircoBot.git
+RUN git clone https://${GITHUB_TOKEN}:x-oauth-basic@github.com/kfirc/TelegramBot.git && \
+    git clone https://${GITHUB_TOKEN}:x-oauth-basic@github.com/kfirc/KfircoBot.git
 
 # install dependencies
 RUN pip install --upgrade pip && \
