@@ -26,10 +26,16 @@ def setup_handlers(bot):
 
         update_message_text = update.callback_query.edit_message_text if update.callback_query else update.message.reply_text
         update_message_text(
-            text='Choose the option in main menu:',
+            text='Please choose an option.',
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton('Author Details', callback_data='details')],
-                [InlineKeyboardButton('Help', callback_data='help')],
+                [
+                    InlineKeyboardButton('Author Details', callback_data='details'),
+                    InlineKeyboardButton('Help', callback_data='help'),
+                ],
+                [
+                    InlineKeyboardButton('Linkedin Profile', url=owner.website),
+                    InlineKeyboardButton('Github repo', url='https://github.com/kfirc/KfircoBot'),
+                ],
             ]),
         )
 
