@@ -11,7 +11,7 @@ def setup_handlers(bot):
         user = update.message.from_user
         context.bot.send_message(
             chat_id=update.effective_chat.id,
-            text=f"Hello {user['first_name']}, my name is KfirBot, how can I help you?",
+            text=f"Hello {user['first_name']}, my name is KfircoBot, how can I help you?",
         )
         bot.help(update, context)
 
