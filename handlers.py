@@ -1,4 +1,4 @@
-from telegram import InlineQueryResultArticle, InputTextMessageContent
+from telegram import InlineQueryResultArticle, InputTextMessageContent, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Filters
 
 from globals import owner
@@ -20,6 +20,21 @@ def setup_handlers(bot):
         context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
 
     @bot.handle.command()
+    @bot.handle.callback_query()
+    def menu(update, context):
+        """ Opens up the main menu """
+
+        update_message_text = update.callback_query.edit_message_text if update.callback_query else update.message.reply_text
+        update_message_text(
+            text='Choose the option in main menu:',
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton('Author Details', callback_data='details')],
+                [InlineKeyboardButton('Help', callback_data='help')],
+            ]),
+        )
+
+    @bot.handle.command()
+    @bot.handle.callback_query()
     def details(update, context):
         """Receive some personal details about the owner"""
         context.bot.send_message(chat_id=update.effective_chat.id, text=str(owner))
