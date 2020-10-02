@@ -20,7 +20,6 @@ load_and_validate_environment()
 bot = TelegramBot(
     token=environ['TELEGRAM_TOKEN'],
     logger_path=environ['LOGGER_PATH'],
-    help_description="My name is KfirBot, I'm going to help you with everything you need!",
 )
 setup_handlers(bot)
 

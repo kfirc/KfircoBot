@@ -5,6 +5,16 @@ from globals import owner
 
 
 def setup_handlers(bot):
+
+    @bot.handle.command()
+    def start(update, context):
+        user = update.message.from_user
+        context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text=f"Hello {user['first_name']}, my name is KfirBot, how can I help you?",
+        )
+        bot.help(update, context)
+
     @bot.handle.message(Filters.text & (~Filters.command))
     def echo(update, context):
         context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
