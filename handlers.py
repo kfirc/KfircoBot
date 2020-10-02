@@ -48,7 +48,8 @@ def setup_handlers(bot):
 
     @bot.handle.message(Filters.command)
     def unknown(update, context):
+        user = update.message.from_user
         context.bot.send_message(
             chat_id=update.effective_chat.id,
-            text="Sorry, I didn't understand that command.\nUse /help for guidance.",
+            text=f"Sorry {user['first_name']}, I didn't understand your command.\nUse /help for guidance.",
         )
