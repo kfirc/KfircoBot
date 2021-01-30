@@ -1,6 +1,7 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Filters
 
+from config import Config
 from globals import owner
 
 
@@ -11,7 +12,7 @@ def setup_handlers(bot):
         user = update.message.from_user
         context.bot.send_message(
             chat_id=update.effective_chat.id,
-            text=f"Hello {user['first_name']}, my name is KfircoBot, how can I help you?",
+            text=f"Hello {user['first_name']}, my name is {Config.BOT_NAME}, how can I help you?",
         )
         bot.help(update, context)
 
@@ -33,9 +34,12 @@ def setup_handlers(bot):
                     InlineKeyboardButton('Help', callback_data='help'),
                 ],
                 [
-                    InlineKeyboardButton('Linkedin Profile', url=owner.website),
-                    InlineKeyboardButton('Github repo', url='https://github.com/kfirc/KfircoBot'),
+                    InlineKeyboardButton('Linkedin Profile', url=Config.OWNER_WEBSITE),
+                    InlineKeyboardButton('Github repo', url=Config.GITHUB_REPO_URL),
                 ],
+                [
+                    InlineKeyboardButton('Download CV', url=Config.DOWNLOAD_CV_URL)
+                ]
             ]),
         )
 

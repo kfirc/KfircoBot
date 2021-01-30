@@ -1,26 +1,9 @@
-from os import path, environ
-from dotenv import load_dotenv
-
 from TelegramBot import TelegramBot
-
+from config import Config
 from handlers import setup_handlers
 
 
-def load_and_validate_environment():
-    # load environment from .env file
-    basedir = path.abspath(path.dirname(__file__))
-    load_dotenv(path.join(basedir, '.env'))
-
-    for key in ('TELEGRAM_TOKEN', 'LOGGER_PATH'):
-        if key not in environ:
-            raise NotImplementedError(f"'{key}' environment variable isn't specified")
-
-
-load_and_validate_environment()
-bot = TelegramBot(
-    token=environ['TELEGRAM_TOKEN'],
-    logger_path=environ['LOGGER_PATH'],
-)
+bot = TelegramBot(token=Config.TELEGRAM_TOKEN, logger_path=Config.LOGGER_PATH)
 setup_handlers(bot)
 
 if __name__ == '__main__':
